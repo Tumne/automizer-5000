@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Footer from '../../../common/Footer';
 import Header from '../../../common/Header';
+import Stepper from '../../../common/Stepper';
 import Step1 from './Step1';
 import Step2 from './Step2';
 import Step3 from './Step3';
@@ -22,7 +23,7 @@ export const MoveCopyForm: React.FC<MoveCopyFormProps> = ({
   return (
     <div>
       <Header title="Move or copy recording" />
-      {/* <Stepper /> */}
+      <Stepper currentStep={currentStep} totalSteps={steps.length} />
       {steps[currentStep]}
       <Footer
         isPrevDisabled={isPrevDisabled}
