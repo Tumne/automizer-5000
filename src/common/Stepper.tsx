@@ -32,10 +32,10 @@ const Stepper: React.FC<StepperProps> = ({ currentStep, totalSteps }) => {
       <p>
         Step {currentStep + 1} of {totalSteps}
       </p>
-
       <div className={styles.progressContainer}>
         {[...Array(totalSteps)].map((_, index) => (
           <LinearProgress
+            key={index}
             classes={{ bar: styles.linearProgress }}
             variant="determinate"
             value={getProgressValue(index)}

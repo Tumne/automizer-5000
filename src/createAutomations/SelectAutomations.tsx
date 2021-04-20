@@ -67,7 +67,7 @@ const SelectAutomations: React.FC<SelectAutomationsProps> = ({
             <FormControlLabel
               value={Automations.CREATE_LABEL}
               control={<Radio />}
-              label="Create a label (same, prolly not)"
+              label="Create a label (same, prolly not, move on)"
               disabled
             />
           </RadioGroup>
