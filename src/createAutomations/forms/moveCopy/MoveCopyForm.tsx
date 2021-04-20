@@ -33,14 +33,13 @@ export const MoveCopyForm: React.FC<MoveCopyFormProps> = ({
   const formik = useFormik({
     initialValues: {
       recordingTitle: '',
-      password: '',
+      recordingType: '',
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
     },
   });
-  console.log(formik);
 
   const steps = [<Step1 />, <Step2 />, <Step3 />, <Step4 />];
 
@@ -75,10 +74,14 @@ export const MoveCopyForm: React.FC<MoveCopyFormProps> = ({
           type="recordingType"
           placeholder="Enter your password"
           variant="outlined"
-          value={formik.values.password}
+          value={formik.values.recordingType}
           onChange={formik.handleChange}
-          error={formik.touched.password && Boolean(formik.errors.password)}
-          helperText={formik.touched.password && formik.errors.password}
+          error={
+            formik.touched.recordingType && Boolean(formik.errors.recordingType)
+          }
+          helperText={
+            formik.touched.recordingType && formik.errors.recordingType
+          }
         />
         <Footer
           isPrevDisabled={isPrevDisabled}
