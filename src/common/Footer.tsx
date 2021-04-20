@@ -39,6 +39,7 @@ const Footer: React.FC<FooterProps> = ({
   return (
     <div className={styles.footer}>
       <Button
+        type="button"
         variant="outlined"
         color="primary"
         onClick={prevStep}
@@ -48,6 +49,7 @@ const Footer: React.FC<FooterProps> = ({
         Back
       </Button>
       <Button
+        type="submit"
         variant="contained"
         color="primary"
         onClick={nextStep}

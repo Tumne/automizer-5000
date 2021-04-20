@@ -22,6 +22,12 @@ const theme = createMuiTheme({
     button: {
       textTransform: 'none',
     },
+    h5: {
+      fontWeight: 500,
+      fontSize: '14px',
+      lineHeight: '24px',
+      margin: '14px 0 2px',
+    },
   },
 });
 

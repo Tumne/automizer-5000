@@ -17,13 +17,13 @@ const AllForms: React.FC<AllFormsProps> = ({
     <div>
       {
         {
-          [Automations.TAG_COMMENT_CLIP]: <div>Tag, Comment Clip</div>,
+          // [Automations.TAG_COMMENT_CLIP]: <div>N/A</div>,
           [Automations.MOVE_COPY]: (
             <MoveCopyForm onBefore={onBefore} onComplete={onComplete} />
           ),
           [Automations.EDIT_TRANSCRIPT_TEXT]: <div>Edit Transcript Text</div>,
           [Automations.EDIT_TRANSCRIPT_TYPE]: <div>Edit Transcript Type</div>,
-          [Automations.CREATE_LABEL]: <div>Create Label</div>,
+          // [Automations.CREATE_LABEL]: <div>N/A</div>,
         }[currentAutomation]
       }
     </div>
