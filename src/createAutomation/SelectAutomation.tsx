@@ -19,13 +19,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-interface SelectAutomationsProps {
+interface SelectAutomationProps {
   value: string;
   onChange: (value: string) => void;
   onComplete: () => void;
 }
 
-const SelectAutomations: React.FC<SelectAutomationsProps> = ({
+const SelectAutomation: React.FC<SelectAutomationProps> = ({
   value,
   onChange,
   onComplete,
@@ -78,4 +78,4 @@ const SelectAutomations: React.FC<SelectAutomationsProps> = ({
   );
 };
 
-export default SelectAutomations;
+export default SelectAutomation;

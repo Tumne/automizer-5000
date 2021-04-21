@@ -7,9 +7,9 @@ import {
   MuiThemeProvider,
 } from '@material-ui/core/styles';
 
-import Dialog from './common/Dialog';
+import Modal from './common/Modal';
 import useModal from './hooks/useModal';
-import CreateAutomations from './createAutomations/CreateAutomation';
+import CreateAutomation from './createAutomation/CreateAutomation';
 
 const theme = createMuiTheme({
   palette: {
@@ -40,9 +40,9 @@ function App() {
         <Button variant="contained" color="primary" onClick={toggleModal}>
           +&nbsp;&nbsp;&nbsp;Create Automation
         </Button>
-        <Dialog isOpen={isOpen} onClose={toggleModal}>
-          <CreateAutomations onComplete={toggleModal} />
-        </Dialog>
+        <Modal isOpen={isOpen} onClose={toggleModal}>
+          <CreateAutomation onComplete={toggleModal} />
+        </Modal>
       </div>
     </MuiThemeProvider>
   );

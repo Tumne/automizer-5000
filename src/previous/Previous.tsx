@@ -3,8 +3,8 @@ import { TextField, Typography } from '@material-ui/core';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
-import Footer from '../../../common/Footer';
-import Header from '../../../common/Header';
+import Footer from '../common/Footer';
+import Header from '../common/Header';
 // import Stepper from '../../../common/Stepper';
 import Step1 from './Step1';
 import Step2 from './Step2';

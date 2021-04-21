@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import AllForms from './forms/AllForms';
-import SelectAutomations from './SelectAutomations';
+import SelectAutomation from './SelectAutomation';
 
 interface CreateAutomationProps {
   onComplete: () => void;
@@ -19,7 +19,7 @@ const CreateAutomation: React.FC<CreateAutomationProps> = ({ onComplete }) => {
           onComplete={onComplete}
         />
       ) : (
-        <SelectAutomations
+        <SelectAutomation
           value={currentAutomation}
           onChange={(value) => setCurrentAutomation(value)}
           onComplete={() => setShowAutomation(true)}

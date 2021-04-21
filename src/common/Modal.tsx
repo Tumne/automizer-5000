@@ -1,6 +1,11 @@
 import React, { ReactChild, ReactChildren } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Backdrop, Fade, IconButton, Modal } from '@material-ui/core';
+import {
+  Backdrop,
+  Fade,
+  IconButton,
+  Modal as MuiModal,
+} from '@material-ui/core';
 import { Clear } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
@@ -26,17 +31,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-interface DialogProps {
+interface ModalProps {
   children: ReactChild | ReactChildren;
   isOpen: boolean;
   onClose: () => void;
 }
 
-const Dialog: React.FC<DialogProps> = ({ children, isOpen, onClose }) => {
+const Modal: React.FC<ModalProps> = ({ children, isOpen, onClose }) => {
   const styles = useStyles();
 
   return (
-    <Modal
+    <MuiModal
       aria-labelledby="transition-modal-title"
       aria-describedby="transition-modal-description"
       className={styles.modal}
@@ -60,8 +65,8 @@ const Dialog: React.FC<DialogProps> = ({ children, isOpen, onClose }) => {
           {children}
         </div>
       </Fade>
-    </Modal>
+    </MuiModal>
   );
 };
 
-export default Dialog;
+export default Modal;

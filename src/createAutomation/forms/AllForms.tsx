@@ -1,7 +1,8 @@
 import React from 'react';
 import { Automations } from '../../enums/automations';
-import EditTranscriptTextForm from './editTranscriptText/EditTranscriptTextForm';
-import { MoveCopyForm } from './moveCopy/MoveCopyForm';
+import MoveCopyForm from './MoveCopy';
+import EditTranscriptTextForm from './EditTranscriptText';
+import EditTranscriptTypeForm from './EditTranscriptType';
 
 interface AllFormsProps {
   currentAutomation: string;
@@ -28,7 +29,12 @@ const AllForms: React.FC<AllFormsProps> = ({
               onComplete={onComplete}
             />
           ),
-          [Automations.EDIT_TRANSCRIPT_TYPE]: <div>Edit Transcript Type</div>,
+          [Automations.EDIT_TRANSCRIPT_TYPE]: (
+            <EditTranscriptTypeForm
+              onBefore={onBefore}
+              onComplete={onComplete}
+            />
+          ),
           // [Automations.CREATE_LABEL]: <div>N/A</div>,
         }[currentAutomation]
       }
