@@ -23,6 +23,7 @@ const EditTranscriptTextForm: React.FC<EditTranscriptTextFormProps> = ({
     automationName: '',
   };
   const [formData, setFormData] = useState<FormikValues>(initialValues);
+  const onStepSubmit = (values: FormikValues) => setFormData(values);
 
   return (
     <div>
@@ -31,17 +32,14 @@ const EditTranscriptTextForm: React.FC<EditTranscriptTextFormProps> = ({
         initialValues={initialValues}
         onSubmit={async (values) =>
           sleep(1000).then(() => {
-            console.log('Wizard submit', values);
+            console.info('Wizard submit', values);
             onComplete();
           })
         }
         onBefore={onBefore}
       >
         <WizardStep
-          onSubmit={(values) => {
-            console.log('Step1 onSubmit');
-            setFormData(values);
-          }}
+          onSubmit={onStepSubmit}
           validationSchema={Yup.object({
             firstName: Yup.string().required('required'),
             lastName: Yup.string().required('required'),
@@ -73,7 +71,7 @@ const EditTranscriptTextForm: React.FC<EditTranscriptTextFormProps> = ({
           </div>
         </WizardStep>
         <WizardStep
-          onSubmit={(values) => setFormData(values)}
+          onSubmit={onStepSubmit}
           validationSchema={Yup.object({
             email: Yup.string()
               .email('Invalid email address')
@@ -93,7 +91,7 @@ const EditTranscriptTextForm: React.FC<EditTranscriptTextFormProps> = ({
             <ErrorMessage className="error" component="div" name="email" />
           </div>
         </WizardStep>
-        <WizardStep onSubmit={() => console.log('Step3 onSubmit')}>
+        <WizardStep onSubmit={onStepSubmit}>
           <div>
             <p>{formData.firstName}</p>
             <p>{formData.lastName}</p>
@@ -101,10 +99,7 @@ const EditTranscriptTextForm: React.FC<EditTranscriptTextFormProps> = ({
           </div>
         </WizardStep>
         <WizardStep
-          onSubmit={(values) => {
-            console.log('Step4 onSubmit');
-            setFormData(values);
-          }}
+          onSubmit={onStepSubmit}
           validationSchema={Yup.object({
             automationName: Yup.string().required('required'),
           })}
