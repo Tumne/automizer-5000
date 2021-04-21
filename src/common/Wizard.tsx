@@ -37,6 +37,7 @@ const Wizard: React.FC<WizardProps> = ({
   };
 
   const handleSubmit = async (values: any, bag: any) => {
+    console.log('here');
     if (step.props.onSubmit) {
       await step.props.onSubmit(values, bag);
     }

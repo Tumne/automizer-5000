@@ -1,10 +1,11 @@
-import { TextField } from '@material-ui/core';
-import { ErrorMessage, Field, FormikValues } from 'formik';
+import { FormikValues } from 'formik';
 import React, { useState } from 'react';
 import * as Yup from 'yup';
 import Header from '../../common/Header';
+import InputText from '../../common/InputText';
 import Wizard from '../../common/Wizard';
 import WizardStep from '../../common/WizardStep';
+import Review from './common/Review';
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -46,30 +47,16 @@ const EditTranscriptTextForm: React.FC<EditTranscriptTextFormProps> = ({
             lastName: Yup.string().required('required'),
           })}
         >
-          <div>
-            <label htmlFor="firstName">First Name</label>
-            <Field
-              autoComplete="given-name"
-              component="input"
-              id="firstName"
-              name="firstName"
-              placeholder="First Name"
-              type="text"
-            />
-            <ErrorMessage className="error" component="div" name="firstName" />
-          </div>
-          <div>
-            <label htmlFor="lastName">Last Name</label>
-            <Field
-              autoComplete="family-name"
-              component="input"
-              id="lastName"
-              name="lastName"
-              placeholder="Last Name"
-              type="text"
-            />
-            <ErrorMessage className="error" component="div" name="lastName" />
-          </div>
+          <InputText
+            name="firstName"
+            label="First name"
+            placeholder="Enter first name"
+          />
+          <InputText
+            name="lastName"
+            label="Last name"
+            placeholder="Enter last name"
+          />
         </WizardStep>
         <WizardStep
           onSubmit={onStepSubmit}
@@ -79,18 +66,13 @@ const EditTranscriptTextForm: React.FC<EditTranscriptTextFormProps> = ({
               .required('required'),
           })}
         >
-          <div>
-            <label htmlFor="email">Email</label>
-            <Field
-              autoComplete="email"
-              component="input"
-              id="email"
-              name="email"
-              placeholder="Email"
-              type="text"
-            />
-            <ErrorMessage className="error" component="div" name="email" />
-          </div>
+          <InputText
+            name="email"
+            label="Email"
+            placeholder="Enter email"
+            type="email"
+          />
+          {/* <Review /> */}
         </WizardStep>
         <WizardStep onSubmit={onStepSubmit}>
           <div>
@@ -105,21 +87,11 @@ const EditTranscriptTextForm: React.FC<EditTranscriptTextFormProps> = ({
             automationName: Yup.string().required('required'),
           })}
         >
-          <div>
-            <label htmlFor="automationName">Automation Name</label>
-            <Field
-              component="input"
-              id="automationName"
-              name="automationName"
-              placeholder="Automation Name"
-              type="text"
-            />
-            <ErrorMessage
-              className="error"
-              component="div"
-              name="automationName"
-            />
-          </div>
+          <InputText
+            name="automationName"
+            label="Automation name"
+            placeholder="Enter automation name"
+          />
         </WizardStep>
       </Wizard>
     </div>
