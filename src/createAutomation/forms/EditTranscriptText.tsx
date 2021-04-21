@@ -1,11 +1,11 @@
-import { FormikValues } from 'formik';
-import React, { useState } from 'react';
+import { Field } from 'formik';
+import React from 'react';
 import * as Yup from 'yup';
 import Header from '../../common/Header';
 import InputText from '../../common/InputText';
 import Wizard from '../../common/Wizard';
 import WizardStep from '../../common/WizardStep';
-import Review from './common/Review';
+import useWizard from '../../hooks/useWizard';
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -18,14 +18,13 @@ const EditTranscriptTextForm: React.FC<EditTranscriptTextFormProps> = ({
   onBefore,
   onComplete,
 }) => {
+  const { setCurrentStep } = useWizard();
   const initialValues = {
     email: '',
     firstName: '',
     lastName: '',
     automationName: '',
   };
-  const [formData, setFormData] = useState<FormikValues>(initialValues);
-  const onStepSubmit = (values: FormikValues) => setFormData(values);
 
   return (
     <div>
@@ -41,7 +40,6 @@ const EditTranscriptTextForm: React.FC<EditTranscriptTextFormProps> = ({
         onBefore={onBefore}
       >
         <WizardStep
-          onSubmit={onStepSubmit}
           validationSchema={Yup.object({
             firstName: Yup.string().required('required'),
             lastName: Yup.string().required('required'),
@@ -59,7 +57,6 @@ const EditTranscriptTextForm: React.FC<EditTranscriptTextFormProps> = ({
           />
         </WizardStep>
         <WizardStep
-          onSubmit={onStepSubmit}
           validationSchema={Yup.object({
             email: Yup.string()
               .email('Invalid email address')
@@ -72,17 +69,22 @@ const EditTranscriptTextForm: React.FC<EditTranscriptTextFormProps> = ({
             placeholder="Enter email"
             type="email"
           />
-          {/* <Review /> */}
+          <button type="button" onClick={() => setCurrentStep(0)}>
+            test
+          </button>
         </WizardStep>
-        <WizardStep onSubmit={onStepSubmit}>
-          <div>
-            <p>{formData.firstName}</p>
-            <p>{formData.lastName}</p>
-            <p>{formData.email}</p>
-          </div>
+        <WizardStep>
+          <Field>
+            {({ field }: any) => (
+              <div>
+                <p>{field.value.firstName}</p>
+                <p>{field.value.lastName}</p>
+                <p>{field.value.email}</p>
+              </div>
+            )}
+          </Field>
         </WizardStep>
         <WizardStep
-          onSubmit={onStepSubmit}
           validationSchema={Yup.object({
             automationName: Yup.string().required('required'),
           })}

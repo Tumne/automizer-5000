@@ -3,6 +3,7 @@ import { Form, Formik, FormikConfig, FormikValues } from 'formik';
 import { WizardStepProps } from './WizardStep';
 import Stepper from './Stepper';
 import Footer from './Footer';
+import useWizard from '../hooks/useWizard';
 
 interface WizardProps extends FormikConfig<FormikValues> {
   onBefore?: () => void;
@@ -14,14 +15,14 @@ const Wizard: React.FC<WizardProps> = ({
   onSubmit,
   onBefore = () => {},
 }) => {
-  const [currentStep, setCurrentStep] = useState(0);
+  const { currentStep, setCurrentStep } = useWizard();
+  const [snapshot, setSnapshot] = useState(initialValues);
+  const [isComplete, setIsComplete] = useState(false);
+
   const steps = React.Children.toArray(
     children
   ) as ReactElement<WizardStepProps>[];
-  const [snapshot, setSnapshot] = useState(initialValues);
-  const [isComplete, setIsComplete] = useState(false);
   const isPrevDisabled = currentStep === 0 && typeof onBefore === 'undefined';
-
   const step = steps[currentStep];
   const totalSteps = steps.length;
   const isLastStep = currentStep === totalSteps - 1;
@@ -36,8 +37,7 @@ const Wizard: React.FC<WizardProps> = ({
     setCurrentStep(Math.max(currentStep - 1, 0));
   };
 
-  const handleSubmit = async (values: any, bag: any) => {
-    console.log('here');
+  const handleSubmit = async (values: FormikValues, bag: any) => {
     if (step.props.onSubmit) {
       await step.props.onSubmit(values, bag);
     }

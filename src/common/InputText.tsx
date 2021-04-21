@@ -6,7 +6,7 @@ interface InputTextProps {
   name: string;
   label: string;
   placeholder?: string;
-  type?: string;
+  type?: 'text' | 'submit' | 'email';
 }
 
 const InputText: React.FC<InputTextProps> = ({
