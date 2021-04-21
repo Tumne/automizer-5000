@@ -1,7 +1,13 @@
 import { FormikConfig, FormikValues } from 'formik';
 import React from 'react';
 
-const WizardStep: React.FC<FormikConfig<FormikValues>> = ({ children }) => {
+export interface WizardStepProps
+  extends Pick<
+    FormikConfig<FormikValues>,
+    'children' | 'validationSchema' | 'onSubmit'
+  > {}
+
+const WizardStep: React.FC<WizardStepProps> = ({ children }) => {
   return <>{children}</>;
 };
 

@@ -1,29 +1,39 @@
 import React, { ReactElement, useState } from 'react';
 import { Form, Formik, FormikConfig, FormikValues } from 'formik';
+import { WizardStepProps } from './WizardStep';
+import Stepper from './Stepper';
+import Footer from './Footer';
 
-const Wizard: React.FC<FormikConfig<FormikValues>> = ({
+interface WizardProps extends FormikConfig<FormikValues> {
+  onBefore?: () => void;
+}
+
+const Wizard: React.FC<WizardProps> = ({
   children,
   initialValues,
   onSubmit,
+  onBefore = () => {},
 }) => {
-  const [stepNumber, setStepNumber] = useState(0);
-  const steps = React.Children.toArray(children) as ReactElement<
-    FormikConfig<FormikValues>
-  >[];
+  const [currentStep, setCurrentStep] = useState(0);
+  const steps = React.Children.toArray(
+    children
+  ) as ReactElement<WizardStepProps>[];
   const [snapshot, setSnapshot] = useState(initialValues);
+  const [isComplete, setIsComplete] = useState(false);
+  const isPrevDisabled = currentStep === 0 && typeof onBefore === 'undefined';
 
-  const step = steps[stepNumber];
+  const step = steps[currentStep];
   const totalSteps = steps.length;
-  const isLastStep = stepNumber === totalSteps - 1;
+  const isLastStep = currentStep === totalSteps - 1;
 
-  const next = (values: any) => {
+  const next = (values: FormikValues) => {
     setSnapshot(values);
-    setStepNumber(Math.min(stepNumber + 1, totalSteps - 1));
+    setCurrentStep(Math.min(currentStep + 1, totalSteps - 1));
   };
 
-  const previous = (values: any) => {
+  const previous = (values: FormikValues) => {
     setSnapshot(values);
-    setStepNumber(Math.max(stepNumber - 1, 0));
+    setCurrentStep(Math.max(currentStep - 1, 0));
   };
 
   const handleSubmit = async (values: any, bag: any) => {
@@ -31,6 +41,7 @@ const Wizard: React.FC<FormikConfig<FormikValues>> = ({
       await step.props.onSubmit(values, bag);
     }
     if (isLastStep) {
+      setIsComplete(true);
       return onSubmit(values, bag);
     } else {
       bag.setTouched({});
@@ -46,23 +57,20 @@ const Wizard: React.FC<FormikConfig<FormikValues>> = ({
     >
       {(formik) => (
         <Form>
-          <p>
-            Step {stepNumber + 1} of {totalSteps}
-          </p>
+          <Stepper
+            currentStep={currentStep}
+            totalSteps={totalSteps}
+            isComplete={isComplete}
+          />
           {step}
-          <div style={{ display: 'flex' }}>
-            {stepNumber > 0 && (
-              <button onClick={() => previous(formik.values)} type="button">
-                Back
-              </button>
-            )}
-            <div>
-              <button disabled={formik.isSubmitting} type="submit">
-                {isLastStep ? 'Submit' : 'Next'}
-              </button>
-            </div>
-          </div>
-          {/* <Debug /> */}
+          <Footer
+            isPrevDisabled={isPrevDisabled}
+            isNextDisabled={formik.isSubmitting}
+            nextButtonText={isLastStep ? 'Create Automation' : 'Continue'}
+            prevStep={
+              currentStep === 0 ? onBefore : () => previous(formik.values)
+            }
+          />
         </Form>
       )}
     </Formik>

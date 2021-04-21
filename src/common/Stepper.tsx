@@ -20,12 +20,21 @@ const useStyles = makeStyles<Theme, Props>((theme) => ({
 interface StepperProps {
   currentStep: number;
   totalSteps: number;
+  isComplete: boolean;
 }
 
-const Stepper: React.FC<StepperProps> = ({ currentStep, totalSteps }) => {
+const Stepper: React.FC<StepperProps> = ({
+  currentStep,
+  totalSteps,
+  isComplete,
+}) => {
   const styles = useStyles({ totalSteps });
-  const getProgressValue = (index: number) =>
-    index === currentStep ? 50 : index < currentStep ? 100 : 0;
+  const getProgressValue = (index: number) => {
+    if (isComplete) {
+      return 100;
+    }
+    return index === currentStep ? 50 : index < currentStep ? 100 : 0;
+  };
 
   return (
     <div>
