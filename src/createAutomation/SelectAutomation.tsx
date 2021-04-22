@@ -1,7 +1,13 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core';
 import { ToggleButtonGroup, ToggleButton } from '@material-ui/lab';
-import { FileCopyOutlined, DescriptionOutlined } from '@material-ui/icons';
+import {
+  FileCopyOutlined,
+  DescriptionOutlined,
+  VideocamOutlined,
+  LocalOfferOutlined,
+  LabelOutlined,
+} from '@material-ui/icons';
 
 import Content from '../common/Content';
 import Footer from '../common/Footer';
@@ -83,7 +89,7 @@ const SelectAutomation: React.FC<SelectAutomationProps> = ({
             <Content
               value={value}
               automationtype={Automations.TAG_COMMENT_CLIP}
-              SVG={DescriptionOutlined}
+              SVG={LocalOfferOutlined}
               title="Tag, comment and clip"
               description="Coming soon, but prolly not"
             />
@@ -101,7 +107,7 @@ const SelectAutomation: React.FC<SelectAutomationProps> = ({
             <Content
               value={value}
               automationtype={Automations.EDIT_TRANSCRIPT_TEXT}
-              SVG={FileCopyOutlined}
+              SVG={DescriptionOutlined}
               title="Edit transcript text"
               description="To text or not to text"
             />
@@ -110,7 +116,7 @@ const SelectAutomation: React.FC<SelectAutomationProps> = ({
             <Content
               value={value}
               automationtype={Automations.EDIT_TRANSCRIPT_TYPE}
-              SVG={FileCopyOutlined}
+              SVG={VideocamOutlined}
               title="Edit transcript type"
               description="Sorry you're not my type"
             />
@@ -119,7 +125,7 @@ const SelectAutomation: React.FC<SelectAutomationProps> = ({
             <Content
               value={value}
               automationtype={Automations.CREATE_LABEL}
-              SVG={FileCopyOutlined}
+              SVG={LabelOutlined}
               title="Create a label"
               description="Yeah right... create your own dang label"
             />

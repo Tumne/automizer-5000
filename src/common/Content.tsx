@@ -1,13 +1,6 @@
-import {
-  Box,
-  makeStyles,
-  Radio,
-  Typography,
-  withStyles,
-} from '@material-ui/core';
+import { Box, makeStyles, Radio, Typography } from '@material-ui/core';
 import React from 'react';
 import Icon from './Icon';
-import { ToggleButton } from '@material-ui/lab';
 import { SvgIconComponent } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
@@ -34,30 +27,6 @@ const useStyles = makeStyles((theme) => ({
     padding: '8px',
   },
 }));
-
-const StyledToggleButton = withStyles(() => ({
-  root: {
-    '&:not(:first-child)': {
-      border: '1px solid lightgrey',
-    },
-    '&:hover': {
-      backgroundColor: '#F3F5F7',
-    },
-    border: '1px solid lightgrey',
-  },
-  selected: {
-    '&:not(:first-child)': {
-      background: '#F0FAFE',
-    },
-    '&:hover': {
-      backgroundColor: '#F0FAFE !important',
-    },
-    background: '#F0FAFE',
-  },
-  label: {
-    justifyContent: 'space-between',
-  },
-}))(ToggleButton);
 
 interface ToggleContentProps {
   value: string;
