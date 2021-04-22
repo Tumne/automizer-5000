@@ -1,12 +1,15 @@
 import { Field } from 'formik';
 import React from 'react';
 import * as Yup from 'yup';
-import { Box, Button, makeStyles, Typography } from '@material-ui/core';
+import { Box, makeStyles, Typography } from '@material-ui/core';
 import InputText from '../../common/InputText';
 import Wizard from '../../common/wizard/Wizard';
 import WizardStep from '../../common/wizard/WizardStep';
 import { useWizardContext } from '../../common/wizard/hooks/useWizard';
 import Label from '../../common/Label';
+import Header from '../../common/Header';
+import { VideocamOutlined } from '@material-ui/icons';
+import EditButton from '../../common/EditButton';
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -39,13 +42,13 @@ const EditTranscriptTextForm: React.FC<EditTranscriptTextFormProps> = ({
   };
   return (
     <div>
-      <Typography variant="h2">Edit Transcript Type</Typography>
+      <Header SVG={VideocamOutlined} title="Edit Transcript Type" />
       <Wizard
         initialValues={initialValues}
         onSubmit={async (values) =>
           sleep(1000).then(() => {
-            alert('Check console for data');
             console.info('Wizard submit', values);
+            alert('Success! Check console for form data! 🚀 ');
             onComplete();
           })
         }
@@ -134,14 +137,7 @@ const EditTranscriptTextForm: React.FC<EditTranscriptTextFormProps> = ({
                     />
                     <Label title="Recording Tags" value={value.recordingTags} />
                   </div>
-                  <Button
-                    variant="contained"
-                    type="button"
-                    style={{ height: '36px' }}
-                    onClick={() => setCurrentStep(0)}
-                  >
-                    Edit
-                  </Button>
+                  <EditButton onClick={() => setCurrentStep(0)} />
                 </Box>
                 <Typography variant="h5">Perform Action</Typography>
                 <Box
@@ -160,14 +156,7 @@ const EditTranscriptTextForm: React.FC<EditTranscriptTextFormProps> = ({
                       value={value.addSubjects}
                     />
                   </div>
-                  <Button
-                    variant="contained"
-                    type="button"
-                    style={{ height: '36px' }}
-                    onClick={() => setCurrentStep(1)}
-                  >
-                    Edit
-                  </Button>
+                  <EditButton onClick={() => setCurrentStep(1)} />
                 </Box>
               </div>
             )}

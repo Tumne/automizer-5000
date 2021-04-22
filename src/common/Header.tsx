@@ -32,7 +32,11 @@ const Header: React.FC<HeaderProps> = ({ SVG, title }) => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.icon}>{SVG && <SVG className={styles.svg} />}</div>
+      {SVG && (
+        <div className={styles.icon}>
+          <SVG className={styles.svg} />
+        </div>
+      )}
       <Typography variant="h2">{title}</Typography>
     </div>
   );

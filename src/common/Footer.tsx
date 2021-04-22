@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(0, 1, 0, 0),
   },
   button: {
+    boxShadow: 'none',
     width: '150px',
   },
   spinner: {

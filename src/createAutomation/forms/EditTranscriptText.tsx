@@ -35,8 +35,8 @@ const MoveCopyForm: React.FC<MoveCopyFormProps> = ({
         initialValues={initialValues}
         onSubmit={async (values) =>
           sleep(1000).then(() => {
-            alert('Check console for data');
             console.info('Wizard submit', values);
+            alert('Success! Check console for form data! 🚀 ');
             onComplete();
           })
         }

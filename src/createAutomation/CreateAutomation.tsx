@@ -8,21 +8,21 @@ interface CreateAutomationProps {
 
 const CreateAutomation: React.FC<CreateAutomationProps> = ({ onComplete }) => {
   const [currentAutomation, setCurrentAutomation] = useState('');
-  const [showAutomation, setShowAutomation] = useState(false);
+  const [showAllForms, setShowAllForms] = useState(false);
 
   return (
     <div>
-      {showAutomation ? (
+      {showAllForms ? (
         <AllForms
           currentAutomation={currentAutomation}
-          onBefore={() => setShowAutomation(false)}
+          onBefore={() => setShowAllForms(false)}
           onComplete={onComplete}
         />
       ) : (
         <SelectAutomation
           value={currentAutomation}
           onChange={(value) => setCurrentAutomation(value)}
-          onComplete={() => setShowAutomation(true)}
+          onComplete={() => setShowAllForms(true)}
         />
       )}
     </div>

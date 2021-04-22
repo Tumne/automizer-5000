@@ -7,7 +7,7 @@ import {
   Radio,
   RadioGroup,
 } from '@material-ui/core';
-import { Automations } from '../enums/automations';
+import { Automations } from '../constants/automations';
 import Footer from '../common/Footer';
 
 const useStyles = makeStyles((theme) => ({

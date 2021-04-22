@@ -1,5 +1,5 @@
 import React from 'react';
-import { Automations } from '../../enums/automations';
+import { Automations } from '../../constants/automations';
 import MoveCopyForm from './MoveCopy';
 import EditTranscriptTextForm from './EditTranscriptText';
 import EditTranscriptTypeForm from './EditTranscriptType';
