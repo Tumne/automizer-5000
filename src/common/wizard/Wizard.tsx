@@ -1,9 +1,9 @@
 import React, { ReactElement, useState } from 'react';
 import { Form, Formik, FormikConfig, FormikValues } from 'formik';
 import { WizardStepProps } from './WizardStep';
-import Stepper from './Stepper';
-import Footer from './Footer';
-import useWizard from '../hooks/useWizard';
+import Stepper from '../Stepper';
+import Footer from '../Footer';
+import { useWizardContext } from './WizardContext';
 
 interface WizardProps extends FormikConfig<FormikValues> {
   onBefore?: () => void;
@@ -15,9 +15,10 @@ const Wizard: React.FC<WizardProps> = ({
   onSubmit,
   onBefore = () => {},
 }) => {
-  const { currentStep, setCurrentStep } = useWizard();
+  const [currentStep, setCurrentStep] = useState(0);
   const [snapshot, setSnapshot] = useState(initialValues);
   const [isComplete, setIsComplete] = useState(false);
+  const { copy } = useWizardContext();
 
   const steps = React.Children.toArray(
     children
@@ -63,6 +64,7 @@ const Wizard: React.FC<WizardProps> = ({
             totalSteps={totalSteps}
             isComplete={isComplete}
           />
+          <div>{copy}</div>
           {step}
           <Footer
             isPrevDisabled={isPrevDisabled}

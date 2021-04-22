@@ -3,9 +3,10 @@ import React from 'react';
 import * as Yup from 'yup';
 import Header from '../../common/Header';
 import InputText from '../../common/InputText';
-import Wizard from '../../common/Wizard';
-import WizardStep from '../../common/WizardStep';
-import useWizard from '../../hooks/useWizard';
+import Wizard from '../../common/wizard/Wizard';
+import WizardStep from '../../common/wizard/WizardStep';
+import { useWizardContext } from '../../common/wizard/WizardContext';
+// import useWizard from '../../hooks/useWizard';
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -18,7 +19,9 @@ const EditTranscriptTextForm: React.FC<EditTranscriptTextFormProps> = ({
   onBefore,
   onComplete,
 }) => {
-  const { setCurrentStep } = useWizard();
+  // const { setCurrentStep } = useWizard();
+  const { setCopy } = useWizardContext();
+
   const initialValues = {
     email: '',
     firstName: '',
@@ -69,7 +72,7 @@ const EditTranscriptTextForm: React.FC<EditTranscriptTextFormProps> = ({
             placeholder="Enter email"
             type="email"
           />
-          <button type="button" onClick={() => setCurrentStep(0)}>
+          <button type="button" onClick={() => setCopy('Blah')}>
             test
           </button>
         </WizardStep>

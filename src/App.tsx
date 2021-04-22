@@ -7,8 +7,8 @@ import {
   MuiThemeProvider,
 } from '@material-ui/core/styles';
 
-import Modal from './common/Modal';
-import useModal from './hooks/useModal';
+import Modal from './common/modal/Modal';
+import useModal from './common/modal/useModal';
 import CreateAutomation from './createAutomation/CreateAutomation';
 
 const theme = createMuiTheme({

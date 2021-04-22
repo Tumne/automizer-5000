@@ -3,6 +3,7 @@ import { Automations } from '../../enums/automations';
 import MoveCopyForm from './MoveCopy';
 import EditTranscriptTextForm from './EditTranscriptText';
 import EditTranscriptTypeForm from './EditTranscriptType';
+import { WizardProvider } from '../../common/wizard/WizardContext';
 
 interface AllFormsProps {
   currentAutomation: string;
@@ -16,29 +17,31 @@ const AllForms: React.FC<AllFormsProps> = ({
   onComplete,
 }) => {
   return (
-    <div>
-      {
+    <WizardProvider>
+      <div>
         {
-          // [Automations.TAG_COMMENT_CLIP]: <div>N/A</div>,
-          [Automations.MOVE_COPY]: (
-            <MoveCopyForm onBefore={onBefore} onComplete={onComplete} />
-          ),
-          [Automations.EDIT_TRANSCRIPT_TEXT]: (
-            <EditTranscriptTextForm
-              onBefore={onBefore}
-              onComplete={onComplete}
-            />
-          ),
-          [Automations.EDIT_TRANSCRIPT_TYPE]: (
-            <EditTranscriptTypeForm
-              onBefore={onBefore}
-              onComplete={onComplete}
-            />
-          ),
-          // [Automations.CREATE_LABEL]: <div>N/A</div>,
-        }[currentAutomation]
-      }
-    </div>
+          {
+            // [Automations.TAG_COMMENT_CLIP]: <div>N/A</div>,
+            [Automations.MOVE_COPY]: (
+              <MoveCopyForm onBefore={onBefore} onComplete={onComplete} />
+            ),
+            [Automations.EDIT_TRANSCRIPT_TEXT]: (
+              <EditTranscriptTextForm
+                onBefore={onBefore}
+                onComplete={onComplete}
+              />
+            ),
+            [Automations.EDIT_TRANSCRIPT_TYPE]: (
+              <EditTranscriptTypeForm
+                onBefore={onBefore}
+                onComplete={onComplete}
+              />
+            ),
+            // [Automations.CREATE_LABEL]: <div>N/A</div>,
+          }[currentAutomation]
+        }
+      </div>
+    </WizardProvider>
   );
 };
 
