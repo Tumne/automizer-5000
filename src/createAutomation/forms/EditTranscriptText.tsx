@@ -1,11 +1,12 @@
 import { Field } from 'formik';
 import React from 'react';
 import * as Yup from 'yup';
-import { Button, Typography } from '@material-ui/core';
+import { Box, Button, Typography } from '@material-ui/core';
 import InputText from '../../common/InputText';
 import Wizard from '../../common/wizard/Wizard';
 import WizardStep from '../../common/wizard/WizardStep';
 import { useWizardContext } from '../../common/wizard/hooks/useWizard';
+import Label from '../../common/Label';
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -31,6 +32,7 @@ const MoveCopyForm: React.FC<MoveCopyFormProps> = ({
         initialValues={initialValues}
         onSubmit={async (values) =>
           sleep(1000).then(() => {
+            alert('Check console for data');
             console.info('Wizard submit', values);
             onComplete();
           })
@@ -55,26 +57,27 @@ const MoveCopyForm: React.FC<MoveCopyFormProps> = ({
           <Field>
             {({ field: { value } }: any) => (
               <div>
-                <div>
-                  <p>Find: {value.find}</p>
+                <Typography variant="h4">Review your automation</Typography>
+                <Typography variant="h5">Perform Action</Typography>
+                <Box
+                  display="flex"
+                  flexDirection="row"
+                  justifyContent="space-between"
+                  marginTop="5px"
+                >
+                  <div>
+                    <Label title="Find" value={value.find} />
+                    <Label title="Replace with" value={value.replaceWith} />
+                  </div>
                   <Button
                     variant="contained"
                     type="button"
+                    style={{ height: '36px' }}
                     onClick={() => setCurrentStep(0)}
                   >
                     Edit
                   </Button>
-                </div>
-                <div>
-                  <p>Replace with: {value.replaceWith}</p>
-                  <Button
-                    variant="contained"
-                    type="button"
-                    onClick={() => setCurrentStep(0)}
-                  >
-                    Edit
-                  </Button>
-                </div>
+                </Box>
               </div>
             )}
           </Field>
@@ -84,9 +87,9 @@ const MoveCopyForm: React.FC<MoveCopyFormProps> = ({
             automationName: Yup.string().required('required'),
           })}
         >
+          <Typography variant="h4">Automation name</Typography>
           <InputText
             name="automationName"
-            label="Automation name"
             placeholder="Enter automation name"
           />
         </WizardStep>

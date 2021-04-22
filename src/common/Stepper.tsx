@@ -9,8 +9,10 @@ const useStyles = makeStyles<Theme, Props>(() => ({
   container: {
     display: 'grid',
     gridTemplateColumns: 'auto 1fr',
+    marginTop: '15px',
   },
   steps: {
+    fontSize: '12px',
     margin: '0 10px 0 0',
   },
   progressContainer: {
@@ -20,7 +22,11 @@ const useStyles = makeStyles<Theme, Props>(() => ({
     gridGap: '5px',
     alignItems: 'center',
   },
-  linearProgress: {
+  root: {
+    height: '2px',
+    borderRadius: 5,
+  },
+  bar: {
     transition: 'none',
   },
 }));
@@ -53,7 +59,10 @@ const Stepper: React.FC<StepperProps> = ({
         {[...Array(totalSteps)].map((_, index) => (
           <LinearProgress
             key={index}
-            classes={{ bar: styles.linearProgress }}
+            classes={{
+              bar: styles.bar,
+              root: styles.root,
+            }}
             variant="determinate"
             value={getProgressValue(index)}
           />

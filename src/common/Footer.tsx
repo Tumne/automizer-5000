@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
     width: `calc(100% - ${theme.spacing(6)}px)`,
     padding: theme.spacing(1.25, 3, 3),
     borderTop: '1px solid #E6EAEE',
+    borderRadius: '6px',
     background: 'white',
   },
   arrowBack: {

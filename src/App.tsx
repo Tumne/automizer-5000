@@ -32,14 +32,13 @@ const theme = createMuiTheme({
       fontSize: '16px',
       fontWeight: 700,
       lineHeight: '28px',
-      margin: 0,
+      margin: '15px 0 0',
     },
     h2: {
       fontFamily: 'poppins',
       fontSize: '20px',
       fontWeight: 700,
       lineHeight: '30px',
-      margin: 0,
     },
   },
 });

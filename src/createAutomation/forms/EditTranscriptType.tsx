@@ -1,7 +1,7 @@
 import { Field } from 'formik';
 import React from 'react';
 import * as Yup from 'yup';
-import { Button, makeStyles, Typography } from '@material-ui/core';
+import { Box, Button, makeStyles, Typography } from '@material-ui/core';
 import InputText from '../../common/InputText';
 import Wizard from '../../common/wizard/Wizard';
 import WizardStep from '../../common/wizard/WizardStep';
@@ -39,11 +39,12 @@ const EditTranscriptTextForm: React.FC<EditTranscriptTextFormProps> = ({
   };
   return (
     <div>
-      <Typography variant="h2">Edit Transcript Text</Typography>
+      <Typography variant="h2">Edit Transcript Type</Typography>
       <Wizard
         initialValues={initialValues}
         onSubmit={async (values) =>
           sleep(1000).then(() => {
+            alert('Check console for data');
             console.info('Wizard submit', values);
             onComplete();
           })
@@ -106,46 +107,68 @@ const EditTranscriptTextForm: React.FC<EditTranscriptTextFormProps> = ({
           <Field>
             {({ field: { value } }: any) => (
               <div>
-                <div>
-                  <Label
-                    title="Recording title contains"
-                    value={value.recordingType}
-                  />
-                  <Label title="Recording type" value={value.recordingTitle} />
-                  <Label
-                    title="Recording participants"
-                    value={value.recordingParticipants}
-                  />
-                  <Label
-                    title="Subjects contain"
-                    value={value.subjectsContain}
-                  />
-                  <Label title="Recording Tags" value={value.recordingTags} />
+                <Typography variant="h4">Review your automation</Typography>
+                <Typography variant="h5">When this happens...</Typography>
+                <Box
+                  display="flex"
+                  flexDirection="row"
+                  justifyContent="space-between"
+                  marginTop="5px"
+                >
+                  <div>
+                    <Label
+                      title="Recording title contains"
+                      value={value.recordingType}
+                    />
+                    <Label
+                      title="Recording type"
+                      value={value.recordingTitle}
+                    />
+                    <Label
+                      title="Recording participants"
+                      value={value.recordingParticipants}
+                    />
+                    <Label
+                      title="Subjects contain"
+                      value={value.subjectsContain}
+                    />
+                    <Label title="Recording Tags" value={value.recordingTags} />
+                  </div>
                   <Button
                     variant="contained"
                     type="button"
+                    style={{ height: '36px' }}
                     onClick={() => setCurrentStep(0)}
                   >
                     Edit
                   </Button>
-                </div>
-                <div>
-                  <Label
-                    title="Change recording type to:"
-                    value={value.changeType}
-                  />
-                  <Label
-                    title="Add recording subjects:"
-                    value={value.addSubjects}
-                  />
+                </Box>
+                <Typography variant="h5">Perform Action</Typography>
+                <Box
+                  display="flex"
+                  flexDirection="row"
+                  justifyContent="space-between"
+                  marginTop="5px"
+                >
+                  <div>
+                    <Label
+                      title="Change recording type to:"
+                      value={value.changeType}
+                    />
+                    <Label
+                      title="Add recording subjects:"
+                      value={value.addSubjects}
+                    />
+                  </div>
                   <Button
                     variant="contained"
                     type="button"
+                    style={{ height: '36px' }}
                     onClick={() => setCurrentStep(1)}
                   >
                     Edit
                   </Button>
-                </div>
+                </Box>
               </div>
             )}
           </Field>
@@ -155,9 +178,9 @@ const EditTranscriptTextForm: React.FC<EditTranscriptTextFormProps> = ({
             automationName: Yup.string().required('required'),
           })}
         >
+          <Typography variant="h4">Automation name</Typography>
           <InputText
             name="automationName"
-            label="Automation name"
             placeholder="Enter automation name"
           />
         </WizardStep>

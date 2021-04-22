@@ -1,29 +1,30 @@
 import { Field } from 'formik';
 import React from 'react';
 import * as Yup from 'yup';
-import { Button, makeStyles, Typography } from '@material-ui/core';
+import { Box, Button, makeStyles, Typography } from '@material-ui/core';
+import { FileCopyOutlined } from '@material-ui/icons';
+
 import InputText from '../../common/InputText';
 import Wizard from '../../common/wizard/Wizard';
 import WizardStep from '../../common/wizard/WizardStep';
 import { useWizardContext } from '../../common/wizard/hooks/useWizard';
+import Label from '../../common/Label';
+import Header from '../../common/Header';
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   stepContainer: {
     overflow: 'scroll',
   },
 }));
 
-interface MoveCopyFormProps {
+interface MoveCopyProps {
   onBefore?: () => void;
   onComplete: () => void;
 }
 
-const MoveCopyForm: React.FC<MoveCopyFormProps> = ({
-  onBefore,
-  onComplete,
-}) => {
+const MoveCopy: React.FC<MoveCopyProps> = ({ onBefore, onComplete }) => {
   const { setCurrentStep } = useWizardContext();
   const styles = useStyles();
   const initialValues = {
@@ -32,24 +33,29 @@ const MoveCopyForm: React.FC<MoveCopyFormProps> = ({
     recordingParticipants: '',
     subjectsContain: '',
     recordingTags: '',
-    find: '',
-    replaceWith: '',
+    changeType: '',
+    addSubjects: '',
     automationName: '',
   };
   return (
     <div>
-      <Typography variant="h2">Edit Transcript Text</Typography>
+      <Header SVG={FileCopyOutlined} title="Move and copy recording" />
       <Wizard
         initialValues={initialValues}
         onSubmit={async (values) =>
           sleep(1000).then(() => {
             console.info('Wizard submit', values);
+            alert('Success! Check console for form data! 🚀 ');
             onComplete();
           })
         }
         onBefore={onBefore}
       >
-        <WizardStep>
+        <WizardStep
+          validationSchema={Yup.object({
+            recordingTitle: Yup.string().required('required'),
+          })}
+        >
           <Typography variant="h4">When this happens...</Typography>
           <div className={styles.stepContainer}>
             <InputText
@@ -81,42 +87,88 @@ const MoveCopyForm: React.FC<MoveCopyFormProps> = ({
         </WizardStep>
         <WizardStep
           validationSchema={Yup.object({
-            find: Yup.string().required('required'),
-            replaceWith: Yup.string().required('required'),
+            changeType: Yup.string().required('required'),
+            addSubjects: Yup.string().required('required'),
           })}
         >
           <Typography variant="h4">Perform Action</Typography>
-          <InputText name="find" label="Find" placeholder="Enter something" />
           <InputText
-            name="replaceWith"
-            label="Replace with"
-            placeholder="Replace with"
+            name="changeType"
+            label="Change recording type to"
+            placeholder="Choose a type"
+          />
+          <InputText
+            name="addSubjects"
+            label="Add recording subjects"
+            placeholder="Add subjects"
           />
         </WizardStep>
         <WizardStep>
           <Field>
             {({ field: { value } }: any) => (
               <div>
-                <div>
-                  <p>Find: {value.find}</p>
+                <Typography variant="h4">Review your automation</Typography>
+                <Typography variant="h5">When this happens...</Typography>
+                <Box
+                  display="flex"
+                  flexDirection="row"
+                  justifyContent="space-between"
+                  marginTop="5px"
+                >
+                  <div>
+                    <Label
+                      title="Recording title contains"
+                      value={value.recordingType}
+                    />
+                    <Label
+                      title="Recording type"
+                      value={value.recordingTitle}
+                    />
+                    <Label
+                      title="Recording participants"
+                      value={value.recordingParticipants}
+                    />
+                    <Label
+                      title="Subjects contain"
+                      value={value.subjectsContain}
+                    />
+                    <Label title="Recording Tags" value={value.recordingTags} />
+                  </div>
                   <Button
                     variant="contained"
                     type="button"
+                    style={{ height: '36px', boxShadow: 'none' }}
                     onClick={() => setCurrentStep(0)}
                   >
                     Edit
                   </Button>
-                </div>
-                <div>
-                  <p>Replace with: {value.replaceWith}</p>
+                </Box>
+                <Typography variant="h5">Perform Action</Typography>
+                <Box
+                  display="flex"
+                  flexDirection="row"
+                  justifyContent="space-between"
+                  marginTop="5px"
+                >
+                  <div>
+                    <Label
+                      title="Change recording type to:"
+                      value={value.changeType}
+                    />
+                    <Label
+                      title="Add recording subjects:"
+                      value={value.addSubjects}
+                    />
+                  </div>
                   <Button
                     variant="contained"
                     type="button"
-                    onClick={() => setCurrentStep(0)}
+                    style={{ height: '36px', boxShadow: 'none' }}
+                    onClick={() => setCurrentStep(1)}
                   >
                     Edit
                   </Button>
-                </div>
+                </Box>
               </div>
             )}
           </Field>
@@ -126,9 +178,9 @@ const MoveCopyForm: React.FC<MoveCopyFormProps> = ({
             automationName: Yup.string().required('required'),
           })}
         >
+          <Typography variant="h4">Automation name</Typography>
           <InputText
             name="automationName"
-            label="Automation name"
             placeholder="Enter automation name"
           />
         </WizardStep>
@@ -137,4 +189,4 @@ const MoveCopyForm: React.FC<MoveCopyFormProps> = ({
   );
 };
 
-export default MoveCopyForm;
+export default MoveCopy;

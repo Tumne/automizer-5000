@@ -4,13 +4,15 @@ import React from 'react';
 
 const useStyles = makeStyles(() => ({
   error: {
-    color: 'red',
+    marginTop: '2px',
+    fontSize: '12px',
+    color: '#FC4723',
   },
 }));
 
 interface InputTextProps {
   name: string;
-  label: string;
+  label?: string;
   placeholder?: string;
   type?: 'text' | 'submit' | 'email';
 }
@@ -32,7 +34,8 @@ const InputText: React.FC<InputTextProps> = ({
             fullWidth
             inputProps={{
               style: {
-                padding: 5,
+                padding: 10,
+                fontSize: 14,
               },
             }}
             placeholder={placeholder}
