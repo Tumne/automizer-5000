@@ -6,10 +6,11 @@ import InputText from '../../common/InputText';
 import Wizard from '../../common/wizard/Wizard';
 import WizardStep from '../../common/wizard/WizardStep';
 import { useWizardContext } from '../../common/wizard/hooks/useWizard';
+import Label from '../../common/Label';
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   stepContainer: {
     overflow: 'scroll',
   },
@@ -32,8 +33,8 @@ const EditTranscriptTextForm: React.FC<EditTranscriptTextFormProps> = ({
     recordingParticipants: '',
     subjectsContain: '',
     recordingTags: '',
-    find: '',
-    replaceWith: '',
+    changeType: '',
+    addSubjects: '',
     automationName: '',
   };
   return (
@@ -49,7 +50,11 @@ const EditTranscriptTextForm: React.FC<EditTranscriptTextFormProps> = ({
         }
         onBefore={onBefore}
       >
-        <WizardStep>
+        <WizardStep
+          validationSchema={Yup.object({
+            recordingTitle: Yup.string().required('required'),
+          })}
+        >
           <Typography variant="h4">When this happens...</Typography>
           <div className={styles.stepContainer}>
             <InputText
@@ -81,16 +86,20 @@ const EditTranscriptTextForm: React.FC<EditTranscriptTextFormProps> = ({
         </WizardStep>
         <WizardStep
           validationSchema={Yup.object({
-            find: Yup.string().required('required'),
-            replaceWith: Yup.string().required('required'),
+            changeType: Yup.string().required('required'),
+            addSubjects: Yup.string().required('required'),
           })}
         >
           <Typography variant="h4">Perform Action</Typography>
-          <InputText name="find" label="Find" placeholder="Enter something" />
           <InputText
-            name="replaceWith"
-            label="Replace with"
-            placeholder="Replace with"
+            name="changeType"
+            label="Change recording type to"
+            placeholder="Choose a type"
+          />
+          <InputText
+            name="addSubjects"
+            label="Add recording subjects"
+            placeholder="Add subjects"
           />
         </WizardStep>
         <WizardStep>
@@ -98,7 +107,20 @@ const EditTranscriptTextForm: React.FC<EditTranscriptTextFormProps> = ({
             {({ field: { value } }: any) => (
               <div>
                 <div>
-                  <p>Find: {value.find}</p>
+                  <Label
+                    title="Recording title contains"
+                    value={value.recordingType}
+                  />
+                  <Label title="Recording type" value={value.recordingTitle} />
+                  <Label
+                    title="Recording participants"
+                    value={value.recordingParticipants}
+                  />
+                  <Label
+                    title="Subjects contain"
+                    value={value.subjectsContain}
+                  />
+                  <Label title="Recording Tags" value={value.recordingTags} />
                   <Button
                     variant="contained"
                     type="button"
@@ -108,11 +130,18 @@ const EditTranscriptTextForm: React.FC<EditTranscriptTextFormProps> = ({
                   </Button>
                 </div>
                 <div>
-                  <p>Replace with: {value.replaceWith}</p>
+                  <Label
+                    title="Change recording type to:"
+                    value={value.changeType}
+                  />
+                  <Label
+                    title="Add recording subjects:"
+                    value={value.addSubjects}
+                  />
                   <Button
                     variant="contained"
                     type="button"
-                    onClick={() => setCurrentStep(0)}
+                    onClick={() => setCurrentStep(1)}
                   >
                     Edit
                   </Button>

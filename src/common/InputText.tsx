@@ -1,6 +1,12 @@
-import { TextField, Typography } from '@material-ui/core';
+import { makeStyles, TextField, Typography } from '@material-ui/core';
 import { ErrorMessage, Field } from 'formik';
 import React from 'react';
+
+const useStyles = makeStyles(() => ({
+  error: {
+    color: 'red',
+  },
+}));
 
 interface InputTextProps {
   name: string;
@@ -15,6 +21,7 @@ const InputText: React.FC<InputTextProps> = ({
   placeholder,
   type = 'text',
 }) => {
+  const styles = useStyles();
   return (
     <div>
       <Typography variant="h5">{label}</Typography>
@@ -33,7 +40,7 @@ const InputText: React.FC<InputTextProps> = ({
           />
         )}
       </Field>
-      <ErrorMessage className="error" component="div" name={name} />
+      <ErrorMessage className={styles.error} component="div" name={name} />
     </div>
   );
 };
