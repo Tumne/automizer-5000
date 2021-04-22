@@ -27,6 +27,8 @@ const useStyles = makeStyles((theme) => ({
     outline: 'none',
   },
   iconButton: {
+    position: 'absolute',
+    right: '25px',
     padding: theme.spacing(0.25),
   },
 }));

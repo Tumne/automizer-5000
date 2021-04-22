@@ -9,12 +9,12 @@ import { useWizardContext } from '../../common/wizard/hooks/useWizard';
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-interface EditTranscriptTextFormProps {
+interface MoveCopyFormProps {
   onBefore?: () => void;
   onComplete: () => void;
 }
 
-const EditTranscriptTextForm: React.FC<EditTranscriptTextFormProps> = ({
+const MoveCopyForm: React.FC<MoveCopyFormProps> = ({
   onBefore,
   onComplete,
 }) => {
@@ -95,4 +95,4 @@ const EditTranscriptTextForm: React.FC<EditTranscriptTextFormProps> = ({
   );
 };
 
-export default EditTranscriptTextForm;
+export default MoveCopyForm;

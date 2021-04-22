@@ -5,12 +5,20 @@ type Props = {
   totalSteps?: number;
 };
 
-const useStyles = makeStyles<Theme, Props>((theme) => ({
+const useStyles = makeStyles<Theme, Props>(() => ({
+  container: {
+    display: 'grid',
+    gridTemplateColumns: 'auto 1fr',
+  },
+  steps: {
+    margin: '0 10px 0 0',
+  },
   progressContainer: {
     width: '100%;',
     display: 'grid',
     gridTemplateColumns: ({ totalSteps }) => `repeat(${totalSteps}, 1fr)`,
     gridGap: '5px',
+    alignItems: 'center',
   },
   linearProgress: {
     transition: 'none',
@@ -37,8 +45,8 @@ const Stepper: React.FC<StepperProps> = ({
   };
 
   return (
-    <div>
-      <p>
+    <div className={styles.container}>
+      <p className={styles.steps}>
         Step {currentStep + 1} of {totalSteps}
       </p>
       <div className={styles.progressContainer}>

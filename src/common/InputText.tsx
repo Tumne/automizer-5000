@@ -23,6 +23,11 @@ const InputText: React.FC<InputTextProps> = ({
           <TextField
             variant="outlined"
             fullWidth
+            inputProps={{
+              style: {
+                padding: 5,
+              },
+            }}
             placeholder={placeholder}
             {...field}
           />
