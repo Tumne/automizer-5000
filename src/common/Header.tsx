@@ -1,11 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
-  header: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
   h2: {
     fontFamily: 'poppins',
     fontSize: '20px',
@@ -21,11 +16,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ title }) => {
   const styles = useStyles();
 
-  return (
-    <div className={styles.header}>
-      <h2 className={styles.h2}>{title}</h2>
-    </div>
-  );
+  return <h2 className={styles.h2}>{title}</h2>;
 };
 
 export default Header;

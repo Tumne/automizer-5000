@@ -23,10 +23,23 @@ const theme = createMuiTheme({
       textTransform: 'none',
     },
     h5: {
-      fontWeight: 500,
       fontSize: '14px',
+      fontWeight: 500,
       lineHeight: '24px',
       margin: '14px 0 2px',
+    },
+    h4: {
+      fontSize: '16px',
+      fontWeight: 700,
+      lineHeight: '28px',
+      margin: 0,
+    },
+    h2: {
+      fontFamily: 'poppins',
+      fontSize: '20px',
+      fontWeight: 700,
+      lineHeight: '30px',
+      margin: 0,
     },
   },
 });

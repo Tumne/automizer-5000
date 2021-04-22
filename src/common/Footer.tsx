@@ -1,4 +1,4 @@
-import { Button, makeStyles } from '@material-ui/core';
+import { Button, CircularProgress, makeStyles } from '@material-ui/core';
 import { ArrowBack } from '@material-ui/icons';
 import React from 'react';
 
@@ -17,6 +17,12 @@ const useStyles = makeStyles((theme) => ({
   arrowBack: {
     margin: theme.spacing(0, 1, 0, 0),
   },
+  button: {
+    width: '150px',
+  },
+  spinner: {
+    color: 'lightgrey',
+  },
 }));
 
 interface FooterProps {
@@ -25,6 +31,7 @@ interface FooterProps {
   nextStep?: () => void | undefined;
   isPrevDisabled?: boolean;
   isNextDisabled?: boolean;
+  isSubmitting?: boolean;
 }
 
 const Footer: React.FC<FooterProps> = ({
@@ -33,8 +40,15 @@ const Footer: React.FC<FooterProps> = ({
   nextStep,
   isPrevDisabled = false,
   isNextDisabled = false,
+  isSubmitting = false,
 }) => {
   const styles = useStyles();
+  const renderNextText = () => {
+    if (isSubmitting) {
+      return <CircularProgress size={24} className={styles.spinner} />;
+    }
+    return nextButtonText || 'Continue';
+  };
 
   return (
     <div className={styles.footer}>
@@ -53,9 +67,10 @@ const Footer: React.FC<FooterProps> = ({
         variant="contained"
         color="primary"
         onClick={nextStep}
-        disabled={isNextDisabled}
+        disabled={isNextDisabled || isSubmitting}
+        className={styles.button}
       >
-        {nextButtonText || 'Continue'}
+        {renderNextText()}
       </Button>
     </div>
   );

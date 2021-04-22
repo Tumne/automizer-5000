@@ -15,7 +15,6 @@ const Wizard: React.FC<WizardProps> = ({
   onSubmit,
   onBefore = () => {},
 }) => {
-  // const [currentStep, setCurrentStep] = useState(0);
   const [snapshot, setSnapshot] = useState(initialValues);
   const [isComplete, setIsComplete] = useState(false);
   const { currentStep, setCurrentStep } = useWizardContext();
@@ -57,7 +56,7 @@ const Wizard: React.FC<WizardProps> = ({
       onSubmit={handleSubmit}
       validationSchema={step.props.validationSchema}
     >
-      {(formik) => (
+      {({ isSubmitting, values }) => (
         <Form>
           <Stepper
             currentStep={currentStep}
@@ -67,11 +66,9 @@ const Wizard: React.FC<WizardProps> = ({
           {step}
           <Footer
             isPrevDisabled={isPrevDisabled}
-            isNextDisabled={formik.isSubmitting}
+            isSubmitting={isSubmitting}
             nextButtonText={isLastStep ? 'Create Automation' : 'Continue'}
-            prevStep={
-              currentStep === 0 ? onBefore : () => previous(formik.values)
-            }
+            prevStep={currentStep === 0 ? onBefore : () => previous(values)}
           />
         </Form>
       )}
