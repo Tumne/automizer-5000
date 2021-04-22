@@ -1,11 +1,11 @@
 import { Field } from 'formik';
 import React from 'react';
 import * as Yup from 'yup';
+import { Button, Typography } from '@material-ui/core';
 import InputText from '../../common/InputText';
 import Wizard from '../../common/wizard/Wizard';
 import WizardStep from '../../common/wizard/WizardStep';
 import { useWizardContext } from '../../common/wizard/hooks/useWizard';
-import { Button, Typography } from '@material-ui/core';
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -24,7 +24,6 @@ const EditTranscriptTextForm: React.FC<EditTranscriptTextFormProps> = ({
     replaceWith: '',
     automationName: '',
   };
-
   return (
     <div>
       <Typography variant="h2">Edit Transcript Text</Typography>

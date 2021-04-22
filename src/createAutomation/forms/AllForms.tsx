@@ -1,9 +1,9 @@
 import React from 'react';
-import { Automations } from '../enums/automations';
-import MoveCopyForm from './forms/MoveCopy';
-import EditTranscriptTextForm from './forms/EditTranscriptText';
-import EditTranscriptTypeForm from './forms/EditTranscriptType';
-import { WizardProvider } from '../common/wizard/WizardContext';
+import { Automations } from '../../enums/automations';
+import MoveCopyForm from './MoveCopy';
+import EditTranscriptTextForm from './EditTranscriptText';
+import EditTranscriptTypeForm from './EditTranscriptType';
+import { WizardProvider } from '../../common/wizard/WizardContext';
 
 interface AllFormsProps {
   currentAutomation: string;

@@ -1,6 +1,6 @@
+import React from 'react';
 import { Button, CircularProgress, makeStyles } from '@material-ui/core';
 import { ArrowBack } from '@material-ui/icons';
-import React from 'react';
 
 const useStyles = makeStyles((theme) => ({
   footer: {

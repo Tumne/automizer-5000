@@ -1,33 +1,32 @@
-import { ErrorMessage, Field, FormikValues } from 'formik';
-import React, { useState } from 'react';
+import { Field } from 'formik';
+import React from 'react';
 import * as Yup from 'yup';
-import Header from '../../common/Header';
+import { Button, Typography } from '@material-ui/core';
+import InputText from '../../common/InputText';
 import Wizard from '../../common/wizard/Wizard';
 import WizardStep from '../../common/wizard/WizardStep';
+import { useWizardContext } from '../../common/wizard/hooks/useWizard';
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-interface EditTranscriptTypeProps {
+interface EditTranscriptTypeFormProps {
   onBefore?: () => void;
   onComplete: () => void;
 }
 
-const EditTranscriptType: React.FC<EditTranscriptTypeProps> = ({
+const EditTranscriptTypeForm: React.FC<EditTranscriptTypeFormProps> = ({
   onBefore,
   onComplete,
 }) => {
+  const { setCurrentStep } = useWizardContext();
   const initialValues = {
-    email: '',
-    firstName: '',
-    lastName: '',
+    find: '',
+    replaceWith: '',
     automationName: '',
   };
-  const [formData, setFormData] = useState<FormikValues>(initialValues);
-  const onStepSubmit = (values: FormikValues) => setFormData(values);
-
   return (
     <div>
-      <Header title="Edit Transcript Type" />
+      <Typography variant="h2">Edit Transcript Text</Typography>
       <Wizard
         initialValues={initialValues}
         onSubmit={async (values) =>
@@ -39,90 +38,61 @@ const EditTranscriptType: React.FC<EditTranscriptTypeProps> = ({
         onBefore={onBefore}
       >
         <WizardStep
-          onSubmit={onStepSubmit}
           validationSchema={Yup.object({
-            firstName: Yup.string().required('required'),
-            lastName: Yup.string().required('required'),
+            find: Yup.string().required('required'),
+            replaceWith: Yup.string().required('required'),
           })}
         >
-          <div>
-            <label htmlFor="firstName">First Name</label>
-            <Field
-              autoComplete="given-name"
-              component="input"
-              id="firstName"
-              name="firstName"
-              placeholder="First Name"
-              type="text"
-            />
-            <ErrorMessage className="error" component="div" name="firstName" />
-          </div>
-          <div>
-            <label htmlFor="lastName">Last Name</label>
-            <Field
-              autoComplete="family-name"
-              component="input"
-              id="lastName"
-              name="lastName"
-              placeholder="Last Name"
-              type="text"
-            />
-            <ErrorMessage className="error" component="div" name="lastName" />
-          </div>
+          <Typography variant="h4">Perform Action</Typography>
+          <InputText name="find" label="Find" placeholder="Enter something" />
+          <InputText
+            name="replaceWith"
+            label="Replace with"
+            placeholder="Replace with"
+          />
+        </WizardStep>
+        <WizardStep>
+          <Field>
+            {({ field: { value } }: any) => (
+              <div>
+                <div>
+                  <p>Find: {value.find}</p>
+                  <Button
+                    variant="contained"
+                    type="button"
+                    onClick={() => setCurrentStep(0)}
+                  >
+                    Edit
+                  </Button>
+                </div>
+                <div>
+                  <p>Replace with: {value.replaceWith}</p>
+                  <Button
+                    variant="contained"
+                    type="button"
+                    onClick={() => setCurrentStep(0)}
+                  >
+                    Edit
+                  </Button>
+                </div>
+              </div>
+            )}
+          </Field>
         </WizardStep>
         <WizardStep
-          onSubmit={onStepSubmit}
-          validationSchema={Yup.object({
-            email: Yup.string()
-              .email('Invalid email address')
-              .required('required'),
-          })}
-        >
-          <div>
-            <label htmlFor="email">Email</label>
-            <Field
-              autoComplete="email"
-              component="input"
-              id="email"
-              name="email"
-              placeholder="Email"
-              type="text"
-            />
-            <ErrorMessage className="error" component="div" name="email" />
-          </div>
-        </WizardStep>
-        <WizardStep onSubmit={onStepSubmit}>
-          <div>
-            <p>{formData.firstName}</p>
-            <p>{formData.lastName}</p>
-            <p>{formData.email}</p>
-          </div>
-        </WizardStep>
-        <WizardStep
-          onSubmit={onStepSubmit}
           validationSchema={Yup.object({
             automationName: Yup.string().required('required'),
           })}
         >
-          <div>
-            <label htmlFor="automationName">Automation Name</label>
-            <Field
-              component="input"
-              id="automationName"
-              name="automationName"
-              placeholder="Automation Name"
-              type="text"
-            />
-            <ErrorMessage
-              className="error"
-              component="div"
-              name="automationName"
-            />
-          </div>
+          <InputText
+            name="automationName"
+            label="Automation name"
+            placeholder="Enter automation name"
+          />
         </WizardStep>
       </Wizard>
     </div>
   );
 };
 
-export default EditTranscriptType;
+export default EditTranscriptTypeForm;
