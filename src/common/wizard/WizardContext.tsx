@@ -1,19 +1,13 @@
-import {
-  createContext,
-  ReactChild,
-  ReactChildren,
-  useContext,
-  useState,
-} from 'react';
+import { createContext, ReactChild, ReactChildren, useState } from 'react';
 
 type WizardContent = {
-  copy: string;
-  setCopy: (c: string) => void;
+  currentStep: number;
+  setCurrentStep: (c: number) => void;
 };
 
-const WizardContext = createContext<WizardContent>({
-  copy: '',
-  setCopy: () => {},
+export const WizardContext = createContext<WizardContent>({
+  currentStep: 0,
+  setCurrentStep: () => {},
 });
 
 interface ProviderProps {
@@ -22,13 +16,11 @@ interface ProviderProps {
 
 export const WizardProvider: React.FC<ProviderProps> = ({ children }) => {
   // const { maxSteps, currentStep } = props;
-
-  const [copy, setCopy] = useState<string>('Cheers');
+  const [currentStep, setCurrentStep] = useState<number>(0);
 
   return (
-    <WizardContext.Provider value={{ copy, setCopy }}>
+    <WizardContext.Provider value={{ currentStep, setCurrentStep }}>
       {children}
     </WizardContext.Provider>
   );
 };
-export const useWizardContext = () => useContext(WizardContext);

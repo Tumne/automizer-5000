@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import AllForms from './forms/AllForms';
+import AllForms from './AllForms';
 import SelectAutomation from './SelectAutomation';
 
 interface CreateAutomationProps {

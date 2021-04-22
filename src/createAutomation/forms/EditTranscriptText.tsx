@@ -5,8 +5,7 @@ import Header from '../../common/Header';
 import InputText from '../../common/InputText';
 import Wizard from '../../common/wizard/Wizard';
 import WizardStep from '../../common/wizard/WizardStep';
-import { useWizardContext } from '../../common/wizard/WizardContext';
-// import useWizard from '../../hooks/useWizard';
+import { useWizardContext } from '../../common/wizard/hooks/useWizard';
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -19,8 +18,7 @@ const EditTranscriptTextForm: React.FC<EditTranscriptTextFormProps> = ({
   onBefore,
   onComplete,
 }) => {
-  // const { setCurrentStep } = useWizard();
-  const { setCopy } = useWizardContext();
+  const { setCurrentStep } = useWizardContext();
 
   const initialValues = {
     email: '',
@@ -72,9 +70,6 @@ const EditTranscriptTextForm: React.FC<EditTranscriptTextFormProps> = ({
             placeholder="Enter email"
             type="email"
           />
-          <button type="button" onClick={() => setCopy('Blah')}>
-            test
-          </button>
         </WizardStep>
         <WizardStep>
           <Field>
@@ -86,6 +81,9 @@ const EditTranscriptTextForm: React.FC<EditTranscriptTextFormProps> = ({
               </div>
             )}
           </Field>
+          <button type="button" onClick={() => setCurrentStep(0)}>
+            test
+          </button>
         </WizardStep>
         <WizardStep
           validationSchema={Yup.object({
