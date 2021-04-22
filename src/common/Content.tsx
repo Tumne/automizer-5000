@@ -1,7 +1,8 @@
-import { Box, makeStyles, Radio, Typography } from '@material-ui/core';
 import React from 'react';
-import Icon from './Icon';
+import { Box, makeStyles, Radio, Typography } from '@material-ui/core';
 import { SvgIconComponent } from '@material-ui/icons';
+
+import Icon from './Icon';
 
 const useStyles = makeStyles((theme) => ({
   control: {

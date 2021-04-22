@@ -1,15 +1,17 @@
-import { Field } from 'formik';
 import React from 'react';
 import * as Yup from 'yup';
+import toast from 'react-hot-toast';
+import { Field } from 'formik';
 import { Box, makeStyles, Typography } from '@material-ui/core';
+import { VideocamOutlined } from '@material-ui/icons';
+
 import InputText from '../../common/InputText';
 import Wizard from '../../common/wizard/Wizard';
 import WizardStep from '../../common/wizard/WizardStep';
-import { useWizardContext } from '../../common/wizard/hooks/useWizard';
 import Label from '../../common/Label';
 import Header from '../../common/Header';
-import { VideocamOutlined } from '@material-ui/icons';
 import EditButton from '../../common/EditButton';
+import { useWizardContext } from '../../common/wizard/hooks/useWizard';
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -48,7 +50,7 @@ const EditTranscriptTextForm: React.FC<EditTranscriptTextFormProps> = ({
         onSubmit={async (values) =>
           sleep(1000).then(() => {
             console.info('Wizard submit', values);
-            alert('Success! Check console for form data! 🚀 ');
+            toast('Success! Check console for data!  🚀');
             onComplete();
           })
         }

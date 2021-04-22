@@ -6,6 +6,7 @@ import {
   unstable_createMuiStrictModeTheme as createMuiTheme,
   MuiThemeProvider,
 } from '@material-ui/core/styles';
+import { Toaster } from 'react-hot-toast';
 
 import Modal from './common/modal/Modal';
 import useModal from './common/modal/hooks/useModal';
@@ -56,6 +57,17 @@ function App() {
           <CreateAutomation onComplete={toggleModal} />
         </Modal>
       </div>
+      <Toaster
+        position="bottom-center"
+        toastOptions={{
+          style: {
+            margin: '40px',
+            background: '#363636',
+            color: '#fff',
+            zIndex: 1,
+          },
+        }}
+      />
     </MuiThemeProvider>
   );
 }

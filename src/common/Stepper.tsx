@@ -1,5 +1,5 @@
-import { LinearProgress, makeStyles, Theme } from '@material-ui/core';
 import React from 'react';
+import { LinearProgress, makeStyles, Theme } from '@material-ui/core';
 
 type Props = {
   totalSteps?: number;

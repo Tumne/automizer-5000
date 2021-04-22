@@ -1,9 +1,10 @@
 import React from 'react';
-import { Automations } from '../../constants/automations';
+
 import MoveCopyForm from './MoveCopy';
 import EditTranscriptTextForm from './EditTranscriptText';
 import EditTranscriptTypeForm from './EditTranscriptType';
 import { WizardProvider } from '../../common/wizard/WizardContext';
+import { Automations } from '../../constants/automations';
 
 interface AllFormsProps {
   currentAutomation: string;

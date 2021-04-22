@@ -1,6 +1,7 @@
-import { Field } from 'formik';
 import React from 'react';
 import * as Yup from 'yup';
+import toast from 'react-hot-toast';
+import { Field } from 'formik';
 import { Box, makeStyles, Typography } from '@material-ui/core';
 import { FileCopyOutlined } from '@material-ui/icons';
 
@@ -46,7 +47,7 @@ const MoveCopy: React.FC<MoveCopyProps> = ({ onBefore, onComplete }) => {
         onSubmit={async (values) =>
           sleep(1000).then(() => {
             console.info('Wizard submit', values);
-            alert('Success! Check console for form data! 🚀 ');
+            toast('Success! Check console for data!  🚀');
             onComplete();
           })
         }
