@@ -1,24 +1,12 @@
 import { makeStyles, Typography } from '@material-ui/core';
 import { SvgIconComponent } from '@material-ui/icons';
 
-const useStyles = makeStyles((theme) => ({
+import Icon from './Icon';
+
+const useStyles = makeStyles(() => ({
   container: {
     display: 'flex',
     alignItems: 'center',
-  },
-  icon: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '32px',
-    height: '32px',
-    marginRight: '15px',
-    borderRadius: '4px',
-    background: '#F0FAFE',
-  },
-  svg: {
-    height: '20px',
-    color: '#1B7AE3',
   },
 }));
 
@@ -32,11 +20,7 @@ const Header: React.FC<HeaderProps> = ({ SVG, title }) => {
 
   return (
     <div className={styles.container}>
-      {SVG && (
-        <div className={styles.icon}>
-          <SVG className={styles.svg} />
-        </div>
-      )}
+      {SVG && <Icon SVG={SVG} />}
       <Typography variant="h2">{title}</Typography>
     </div>
   );
