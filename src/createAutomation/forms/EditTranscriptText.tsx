@@ -1,12 +1,15 @@
 import { Field } from 'formik';
 import React from 'react';
 import * as Yup from 'yup';
-import { Box, Button, Typography } from '@material-ui/core';
+import { Box, Typography } from '@material-ui/core';
 import InputText from '../../common/InputText';
 import Wizard from '../../common/wizard/Wizard';
 import WizardStep from '../../common/wizard/WizardStep';
 import { useWizardContext } from '../../common/wizard/hooks/useWizard';
 import Label from '../../common/Label';
+import EditButton from '../../common/EditButton';
+import Header from '../../common/Header';
+import { DescriptionOutlined } from '@material-ui/icons';
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -27,7 +30,7 @@ const MoveCopyForm: React.FC<MoveCopyFormProps> = ({
   };
   return (
     <div>
-      <Typography variant="h2">Edit Transcript Text</Typography>
+      <Header SVG={DescriptionOutlined} title="Edit Transcript Text" />
       <Wizard
         initialValues={initialValues}
         onSubmit={async (values) =>
@@ -69,14 +72,7 @@ const MoveCopyForm: React.FC<MoveCopyFormProps> = ({
                     <Label title="Find" value={value.find} />
                     <Label title="Replace with" value={value.replaceWith} />
                   </div>
-                  <Button
-                    variant="contained"
-                    type="button"
-                    style={{ height: '36px' }}
-                    onClick={() => setCurrentStep(0)}
-                  >
-                    Edit
-                  </Button>
+                  <EditButton onClick={() => setCurrentStep(0)} />
                 </Box>
               </div>
             )}

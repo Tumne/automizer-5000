@@ -1,7 +1,7 @@
 import { Field } from 'formik';
 import React from 'react';
 import * as Yup from 'yup';
-import { Box, Button, makeStyles, Typography } from '@material-ui/core';
+import { Box, makeStyles, Typography } from '@material-ui/core';
 import { FileCopyOutlined } from '@material-ui/icons';
 
 import InputText from '../../common/InputText';
@@ -10,6 +10,7 @@ import WizardStep from '../../common/wizard/WizardStep';
 import { useWizardContext } from '../../common/wizard/hooks/useWizard';
 import Label from '../../common/Label';
 import Header from '../../common/Header';
+import EditButton from '../../common/EditButton';
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -134,14 +135,7 @@ const MoveCopy: React.FC<MoveCopyProps> = ({ onBefore, onComplete }) => {
                     />
                     <Label title="Recording Tags" value={value.recordingTags} />
                   </div>
-                  <Button
-                    variant="contained"
-                    type="button"
-                    style={{ height: '36px', boxShadow: 'none' }}
-                    onClick={() => setCurrentStep(0)}
-                  >
-                    Edit
-                  </Button>
+                  <EditButton onClick={() => setCurrentStep(0)} />
                 </Box>
                 <Typography variant="h5">Perform Action</Typography>
                 <Box
@@ -160,14 +154,7 @@ const MoveCopy: React.FC<MoveCopyProps> = ({ onBefore, onComplete }) => {
                       value={value.addSubjects}
                     />
                   </div>
-                  <Button
-                    variant="contained"
-                    type="button"
-                    style={{ height: '36px', boxShadow: 'none' }}
-                    onClick={() => setCurrentStep(1)}
-                  >
-                    Edit
-                  </Button>
+                  <EditButton onClick={() => setCurrentStep(1)} />
                 </Box>
               </div>
             )}
