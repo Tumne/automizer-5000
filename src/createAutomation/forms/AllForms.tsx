@@ -21,7 +21,7 @@ const AllForms: React.FC<AllFormsProps> = ({
       <div>
         {
           {
-            // [Automations.TAG_COMMENT_CLIP]: <div>N/A</div>,
+            // [Automations.TAG_COMMENT_CLIP]: null,
             [Automations.MOVE_COPY]: (
               <MoveCopyForm onBefore={onBefore} onComplete={onComplete} />
             ),
@@ -37,7 +37,7 @@ const AllForms: React.FC<AllFormsProps> = ({
                 onComplete={onComplete}
               />
             ),
-            // [Automations.CREATE_LABEL]: <div>N/A</div>,
+            // [Automations.CREATE_LABEL]: null,
           }[currentAutomation]
         }
       </div>

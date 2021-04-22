@@ -1,23 +1,52 @@
-import Header from '../common/Header';
 import React from 'react';
-import {
-  FormControl,
-  FormControlLabel,
-  makeStyles,
-  Radio,
-  RadioGroup,
-} from '@material-ui/core';
-import { Automations } from '../constants/automations';
-import Footer from '../common/Footer';
+import { withStyles } from '@material-ui/core';
+import { ToggleButtonGroup, ToggleButton } from '@material-ui/lab';
+import { FileCopyOutlined, DescriptionOutlined } from '@material-ui/icons';
 
-const useStyles = makeStyles((theme) => ({
-  control: {
+import Content from '../common/Content';
+import Footer from '../common/Footer';
+import Header from '../common/Header';
+import { Automations } from '../constants/automations';
+
+const StyledToggleButtonGroup = withStyles((theme) => ({
+  root: {
     width: '100%',
   },
-  label: {
-    margin: theme.spacing(0, 0, 1.5),
+  grouped: {
+    margin: theme.spacing(0.5),
+    border: 'none',
+    '&:not(:first-child)': {
+      borderRadius: theme.shape.borderRadius,
+    },
+    '&:first-child': {
+      borderRadius: theme.shape.borderRadius,
+    },
   },
-}));
+}))(ToggleButtonGroup);
+
+const StyledToggleButton = withStyles(() => ({
+  root: {
+    '&:not(:first-child)': {
+      border: '1px solid lightgrey',
+    },
+    '&:hover': {
+      backgroundColor: '#F3F5F7',
+    },
+    border: '1px solid lightgrey',
+  },
+  selected: {
+    '&:not(:first-child)': {
+      background: '#F0FAFE',
+    },
+    '&:hover': {
+      backgroundColor: '#F0FAFE !important',
+    },
+    background: '#F0FAFE',
+  },
+  label: {
+    justifyContent: 'space-between',
+  },
+}))(ToggleButton);
 
 interface SelectAutomationProps {
   value: string;
@@ -30,10 +59,11 @@ const SelectAutomation: React.FC<SelectAutomationProps> = ({
   onChange,
   onComplete,
 }) => {
-  const styles = useStyles();
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(e.target.value);
+  const handleChange = (
+    _: React.MouseEvent<HTMLElement, MouseEvent>,
+    value: string
+  ) => {
+    onChange(value);
   };
 
   return (
@@ -41,37 +71,60 @@ const SelectAutomation: React.FC<SelectAutomationProps> = ({
       <Header title="Create new automation" />
       <div>
         <p>Select a template to start this automation</p>
-        <FormControl className={styles.control} component="fieldset">
-          <RadioGroup value={value} onChange={handleChange}>
-            <FormControlLabel
-              value={Automations.TAG_COMMENT_CLIP}
-              control={<Radio />}
-              label="Tag, comment and clip (coming soon, but prolly not)"
-              disabled
+        <StyledToggleButtonGroup
+          size="small"
+          value={value}
+          exclusive
+          onChange={handleChange}
+          aria-label="text alignment"
+          orientation="vertical"
+        >
+          <StyledToggleButton value={Automations.TAG_COMMENT_CLIP} disabled>
+            <Content
+              value={value}
+              automationtype={Automations.TAG_COMMENT_CLIP}
+              SVG={DescriptionOutlined}
+              title="Tag, comment and clip"
+              description="Coming soon, but prolly not"
             />
-            <FormControlLabel
-              value={Automations.MOVE_COPY}
-              control={<Radio />}
-              label="Move or copy recording"
+          </StyledToggleButton>
+          <StyledToggleButton value={Automations.MOVE_COPY}>
+            <Content
+              value={value}
+              automationtype={Automations.MOVE_COPY}
+              SVG={FileCopyOutlined}
+              title="Move or copy recording"
+              description="Command + C, Command + V"
             />
-            <FormControlLabel
-              value={Automations.EDIT_TRANSCRIPT_TEXT}
-              control={<Radio />}
-              label="Edit transcript text"
+          </StyledToggleButton>
+          <StyledToggleButton value={Automations.EDIT_TRANSCRIPT_TEXT}>
+            <Content
+              value={value}
+              automationtype={Automations.EDIT_TRANSCRIPT_TEXT}
+              SVG={FileCopyOutlined}
+              title="Edit transcript text"
+              description="To text or not to text"
             />
-            <FormControlLabel
-              value={Automations.EDIT_TRANSCRIPT_TYPE}
-              control={<Radio />}
-              label="Edit transcript type"
+          </StyledToggleButton>
+          <StyledToggleButton value={Automations.EDIT_TRANSCRIPT_TYPE}>
+            <Content
+              value={value}
+              automationtype={Automations.EDIT_TRANSCRIPT_TYPE}
+              SVG={FileCopyOutlined}
+              title="Edit transcript type"
+              description="Sorry you're not my type"
             />
-            <FormControlLabel
-              value={Automations.CREATE_LABEL}
-              control={<Radio />}
-              label="Create a label (same, prolly not, move on)"
-              disabled
+          </StyledToggleButton>
+          <StyledToggleButton value={Automations.CREATE_LABEL} disabled>
+            <Content
+              value={value}
+              automationtype={Automations.CREATE_LABEL}
+              SVG={FileCopyOutlined}
+              title="Create a label"
+              description="Yeah right... create your own dang label"
             />
-          </RadioGroup>
-        </FormControl>
+          </StyledToggleButton>
+        </StyledToggleButtonGroup>
       </div>
       <Footer nextStep={onComplete} isPrevDisabled isNextDisabled={!value} />
     </div>
