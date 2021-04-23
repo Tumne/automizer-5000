@@ -12,7 +12,7 @@ import {
 import Content from '../common/Content';
 import Footer from '../common/Footer';
 import Header from '../common/Header';
-import { Automations } from '../enums/automations';
+import { Automations } from './enums/automations';
 
 const StyledToggleButtonGroup = withStyles((theme) => ({
   root: {
@@ -118,7 +118,7 @@ const SelectAutomation: React.FC<SelectAutomationProps> = ({
               automationtype={Automations.EDIT_TRANSCRIPT_TYPE}
               SVG={VideocamOutlined}
               title="Edit transcript type"
-              description="Sorry you're not my type"
+              description="Transcript type done right"
             />
           </StyledToggleButton>
           <StyledToggleButton value={Automations.CREATE_LABEL} disabled>
@@ -127,7 +127,7 @@ const SelectAutomation: React.FC<SelectAutomationProps> = ({
               automationtype={Automations.CREATE_LABEL}
               SVG={LabelOutlined}
               title="Create a label"
-              description="Yeah right... create your own dang label"
+              description="Not coming soon"
             />
           </StyledToggleButton>
         </StyledToggleButtonGroup>

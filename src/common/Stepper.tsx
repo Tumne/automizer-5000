@@ -16,8 +16,8 @@ const useStyles = makeStyles<Theme, Props>(() => ({
     margin: '0 10px 0 0',
   },
   progressContainer: {
-    width: '100%;',
     display: 'grid',
+    width: '100%;',
     gridTemplateColumns: ({ totalSteps }) => `repeat(${totalSteps}, 1fr)`,
     gridGap: '5px',
     alignItems: 'center',
@@ -28,6 +28,10 @@ const useStyles = makeStyles<Theme, Props>(() => ({
   },
   bar: {
     transition: 'none',
+    borderRadius: 5,
+  },
+  colorPrimary: {
+    backgroundColor: '#E6EAEE',
   },
 }));
 
@@ -61,6 +65,7 @@ const Stepper: React.FC<StepperProps> = ({
             key={index}
             classes={{
               bar: styles.bar,
+              colorPrimary: styles.colorPrimary,
               root: styles.root,
             }}
             variant="determinate"

@@ -4,7 +4,7 @@ import MoveCopyForm from './MoveCopy';
 import EditTranscriptTextForm from './EditTranscriptText';
 import EditTranscriptTypeForm from './EditTranscriptType';
 import { WizardProvider } from '../../common/wizard/WizardContext';
-import { Automations } from '../../enums/automations';
+import { Automations } from '../enums/automations';
 
 interface AllFormsProps {
   currentAutomation: string;
@@ -22,7 +22,7 @@ const AllForms: React.FC<AllFormsProps> = ({
       <div>
         {
           {
-            // [Automations.TAG_COMMENT_CLIP]: null,
+            [Automations.TAG_COMMENT_CLIP]: null,
             [Automations.MOVE_COPY]: (
               <MoveCopyForm onBefore={onBefore} onComplete={onComplete} />
             ),
@@ -38,7 +38,7 @@ const AllForms: React.FC<AllFormsProps> = ({
                 onComplete={onComplete}
               />
             ),
-            // [Automations.CREATE_LABEL]: null,
+            [Automations.CREATE_LABEL]: null,
           }[currentAutomation]
         }
       </div>
