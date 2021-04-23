@@ -1,6 +1,6 @@
 # Automizer 5000
 
-_The future of yesterday is here now... or tomorrow_
+_The future of yesterday is here now... probably_
 
 This is a basic automation wizard form utilizing React/Typscript/Material UI. A user can navigate the multi-step, add information and submit their automation values. I decided to only implement textboxes and spent time to closely match the design.
 
