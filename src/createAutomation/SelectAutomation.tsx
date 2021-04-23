@@ -12,7 +12,7 @@ import {
 import Content from '../common/Content';
 import Footer from '../common/Footer';
 import Header from '../common/Header';
-import { Automations } from '../constants/automations';
+import { Automations } from '../enums/automations';
 
 const StyledToggleButtonGroup = withStyles((theme) => ({
   root: {

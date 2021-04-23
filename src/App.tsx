@@ -1,6 +1,7 @@
 import './App.css';
 import 'typeface-roboto';
 import 'typeface-poppins';
+import 'typeface-teko';
 import Button from '@material-ui/core/Button';
 import {
   unstable_createMuiStrictModeTheme as createMuiTheme,
@@ -11,6 +12,7 @@ import { Toaster } from 'react-hot-toast';
 import Modal from './common/modal/Modal';
 import useModal from './common/modal/hooks/useModal';
 import CreateAutomation from './createAutomation/CreateAutomation';
+import { Typography } from '@material-ui/core';
 
 const theme = createMuiTheme({
   palette: {
@@ -41,6 +43,13 @@ const theme = createMuiTheme({
       fontWeight: 700,
       lineHeight: '30px',
     },
+    h1: {
+      position: 'absolute',
+      top: '70px',
+      right: '50px',
+      fontFamily: 'teko',
+      color: '#FFF',
+    },
   },
 });
 
@@ -50,7 +59,8 @@ function App() {
   return (
     <MuiThemeProvider theme={theme}>
       <div className="App">
-        <Button variant="contained" color="primary" onClick={toggleModal}>
+        <Typography variant="h1">AUTOMIZER 5000</Typography>
+        <Button variant="contained" color="default" onClick={toggleModal}>
           +&nbsp;&nbsp;&nbsp;Create Automation
         </Button>
         <Modal isOpen={isOpen} onClose={toggleModal}>
@@ -62,8 +72,6 @@ function App() {
         toastOptions={{
           style: {
             margin: '40px',
-            background: '#363636',
-            color: '#fff',
             zIndex: 1,
           },
         }}

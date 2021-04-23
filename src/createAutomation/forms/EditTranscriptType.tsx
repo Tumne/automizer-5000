@@ -48,7 +48,7 @@ const EditTranscriptTextForm: React.FC<EditTranscriptTextFormProps> = ({
       <Wizard
         initialValues={initialValues}
         onSubmit={async (values) =>
-          sleep(1000).then(() => {
+          sleep(500).then(() => {
             console.info('Wizard submit', values);
             toast('Success! Check console for data!  🚀');
             onComplete();

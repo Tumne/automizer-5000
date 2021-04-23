@@ -4,7 +4,7 @@ import MoveCopyForm from './MoveCopy';
 import EditTranscriptTextForm from './EditTranscriptText';
 import EditTranscriptTypeForm from './EditTranscriptType';
 import { WizardProvider } from '../../common/wizard/WizardContext';
-import { Automations } from '../../constants/automations';
+import { Automations } from '../../enums/automations';
 
 interface AllFormsProps {
   currentAutomation: string;

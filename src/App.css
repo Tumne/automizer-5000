@@ -4,4 +4,6 @@
   align-items: center;
   height: 100vh;
   text-align: center;
+  background: url('./image.jpg') no-repeat;
+  background-size: cover;
 }
