@@ -1,46 +1,35 @@
-# Getting Started with Create React App
+# Automizer 5000
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+_The future of yesterday is here now... or tomorrow_
 
-## Available Scripts
+This is a basic automation wizard form utilizing React/Typscript/Material UI. A user can navigate the multi-step, add information and submit their automation values. I decided to only implement textboxes and spent time to closely match the design.
 
-In the project directory, you can run:
+All in all this took 4 work days to build and demonstrates my abilities as a Front End Scientician 🚀.
 
-### `yarn start`
+## Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
+git clone https://github.com/Tumne/automizer-5000.git
+cd automizer-5000
+yarn
+yarn start
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Open [http://localhost:3000](http://localhost:3000) in browser
 
-### `yarn test`
+## Built With
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [React](https://reactjs.org/) - The JS framework used
+- [React Context API](https://reactjs.org/docs/context.html) - Utilizing a consumer/provider model with hooks
+- [Typescript](https://www.typescriptlang.org/) - Strictly typed javascript
+- [Material UI](https://material-ui.com/) - React Material designed components
+- [Formik](https://formik.org/) - React form builder
+- [Yum](https://github.com/jquense/yup) - JS Schema builder for validation
 
-### `yarn build`
+## Author
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Nikhil Tumne** - _Developers Developers Developers_ - [Freshly Grazed](http://freshlygrazed.com/)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## License
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+This project is licensed under the MIT License - see the [LICENSE.md](https://www.mit.edu/~amini/LICENSE.md) file for details
