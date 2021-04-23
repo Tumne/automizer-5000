@@ -10,7 +10,7 @@ _The future of yesterday is here now... probably_
 
 This is a basic automation wizard form utilizing React/Typscript/Material UI. A user can navigate the multi-step, add information and submit their automation values. I decided to only implement textboxes and spent time to closely match the design.
 
-All in all this took 4 work days to build and demonstrates my abilities as a Front End Scientician 🚀.
+All in all this took 4 work days to build and demonstrates my abilities as a Senior Front End Scientician 🚀.
 
 ## Getting Started
 
